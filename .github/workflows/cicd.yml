@@ -34,17 +34,17 @@ jobs:
         go get sigs.k8s.io/kind
         cd ${GOPATH}/src/k8s.io/kubernetes && git checkout v1.19.0-rc.4
         kind build node-image --image=v1.19.0-rc.4
-     
+
 
     - name: Bring up k8s
       run: |
         make cert-manager-v1.19
-      
-      
+
+
     - name: compile
       run: |
-        go build -o mclient
-        ./mclient
-     
+        go build ./examples/list-resource
+        ./examples/list-resources/list-resource
+
 
 
