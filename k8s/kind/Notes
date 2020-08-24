@@ -1,1 +1,4 @@
 kubectl run shell --rm -i --tty --image ubuntu -- bash
+
+
+# /root/go/bin/in-cluster-client-configuration

@@ -28,16 +28,14 @@ nodes:
     protocol: TCP
 - role: worker
   extraMounts:
-  - containerPath: /tmp/hostpath_pv
-    hostPath: /tmp/hostpath_pv
-    readOnly: False
+  - hostPath: /tmp/hostpath_pv
+    containerPath: /tmp/hostpath_pv
 - role: worker
   extraMounts:
-  - containerPath: /tmp/hostpath_pv
-    hostPath: /tmp/hostpath_pv
-    readOnly: False
+  - hostPath: /tmp/hostpath_pv
+    containerPath: /tmp/hostpath_pv
 - role: worker
   extraMounts:
-  - containerPath: /tmp/hostpath_pv
-    hostPath: /tmp/hostpath_pv
-    readOnly: False
+  - hostPath: /tmp/hostpath_pv
+    containerPath: /tmp/hostpath_pv
+
