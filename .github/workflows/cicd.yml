@@ -43,8 +43,8 @@ jobs:
       
     - name: compile
       run: |
-        go build . -o client
-        ./client
+        go build -o mclient
+        ./mclient
      
 
 
