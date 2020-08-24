@@ -25,7 +25,10 @@ jobs:
     - name: BuildImage
       run: |
         mkdir -p /home/runner/gopath
-        make buildImage
+        go get k8s.io/kubernetes || true
+        go get sigs.k8s.io/kind
+        cd ${GOPATH}/src/k8s.io/kubernetes && git checkout v1.19.0-rc.4
+        kind build node-image --image=v1.19.0-rc.4
         make cert-manager-v1.19
       env:
        GOPATH: /home/runner/gopath
