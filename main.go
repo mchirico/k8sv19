@@ -9,6 +9,7 @@ import (
 	"k8s.io/client-go/tools/clientcmd"
 	"log"
 	"os"
+	"strings"
 	"time"
 )
 
@@ -66,10 +67,12 @@ func main() {
 			fmt.Printf("\n\nPod Name: %s\n",p.ObjectMeta.Name)
 			fmt.Printf("Pod Namespace: %s\n",p.ObjectMeta.Namespace)
 			fmt.Printf("Status.Phase: %s\n",p.Status.Phase)
-			fmt.Printf("HostIP: %s\n",p.Status.HostIP)
-			fmt.Printf("PodIP: %s\n",p.Status.PodIP)
-			fmt.Printf("StartTime: %v\n",p.Status.StartTime.Time)
 
+			if strings.Contains(string(p.Status.Phase),"Running") {
+				fmt.Printf("HostIP: %s\n", p.Status.HostIP)
+				fmt.Printf("PodIP: %s\n",p.Status.PodIP)
+				fmt.Printf("StartTime: %v\n",p.Status.StartTime.Time)
+			}
 			fmt.Printf("Status Phase:\n%v\n",p.Status.Phase)
 		}
 	}()
