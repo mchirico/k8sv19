@@ -1,12 +1,12 @@
 package main
 
 import (
+	"context"
 	"fmt"
 	metaV1 "k8s.io/apimachinery/pkg/apis/meta/v1"
 	"k8s.io/client-go/kubernetes"
 	"k8s.io/client-go/tools/clientcmd"
 	"os"
-	"context"
 )
 
 func main() {
@@ -38,14 +38,14 @@ func main() {
 	// Get a *PodList (k8s.io/api/core/v1)
 	ctx, cancel := context.WithCancel(context.Background())
 	defer cancel()
-	pods, err := coreV1Client.Pods("").List(ctx,metaV1.ListOptions{})
+	pods, err := coreV1Client.Pods("").List(ctx, metaV1.ListOptions{})
 	if err != nil {
 		panic(err.Error())
 	}
 
 	// List each Pod (k8s.io/api/core/v1)
 	for i, pod := range pods.Items {
-		fmt.Printf("Pod %d: %s\n", i+1, pod.ObjectMeta.Name)
+		fmt.Printf("Pod %d: %s, Namespace: %s\n", i+1, pod.ObjectMeta.Name, pod.ObjectMeta.Namespace)
 	}
 
 	//-------------------------------------------------------------------------//
@@ -53,7 +53,7 @@ func main() {
 	//-------------------------------------------------------------------------//
 
 	// Get a *NodeList (k8s.io/api/core/v1)
-	nodes, err := coreV1Client.Nodes().List(ctx,metaV1.ListOptions{})
+	nodes, err := coreV1Client.Nodes().List(ctx, metaV1.ListOptions{})
 	if err != nil {
 		panic(err.Error())
 	}
@@ -68,7 +68,7 @@ func main() {
 	//-------------------------------------------------------------------------//
 
 	// Get a *DeploymentList (k8s.io/api/apps/v1)
-	deployments, err := appsV1Client.Deployments("").List(ctx,metaV1.ListOptions{})
+	deployments, err := appsV1Client.Deployments("").List(ctx, metaV1.ListOptions{})
 	if err != nil {
 		panic(err.Error())
 	}
