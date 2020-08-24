@@ -2,38 +2,36 @@
 # k8sv19
 
 
-```
+## Steps for running
 
+### Build KinD image for Kubernetes v1.19.0-rc.4
+```
+rm -rf ${GOPATH}/src/k8s.io/kubernetes
+export GO111MODULE=off
+go get k8s.io/kubernetes || true
 export GO111MODULE=on
-go get k8s.io/kubernetes
-go get k8s.io/client-go@v0.19.0-rc.4
+
+go get sigs.k8s.io/kind
+cd ${GOPATH}/src/k8s.io/kubernetes && git checkout v1.19.0-rc.4
+kind build node-image --image=v1.19.0-rc.4
 
 ```
 
+### Create Cluster
 
-## Build with vendor
 ```
-export GO111MODULE=on
-go mod init
-# Below will put all packages in a vendor folder
-go mod vendor
-
-
-
-go test -v -mod=vendor ./...
-
-# Don't forget the "." in "./cmd/script" below
-go build -v -mod=vendor ./...
-```
-
-
-## Don't forget golint
+kind delete cluster
+kind create cluster --image=v1.19.0-rc.4 --config calico/kind-calico.yaml
+kubectl apply -f calico/ingress-nginx.yaml
+kubectl apply -f calico/tigera-operator.yaml
+kubectl apply -f calico/calicoNetwork.yaml
+kubectl apply -f calico/calicoctl.yaml
+kubectl apply -f calico/cert-manager.yaml
 
 ```
 
-golint -set_exit_status $(go list ./... | grep -v /vendor/)
-
+### Build and Run Program
+```
+go run main.go
 ```
 
-
-# k8sv19
