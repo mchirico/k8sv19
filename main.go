@@ -3,13 +3,13 @@ package main
 import (
 	"context"
 	"fmt"
+	corev1 "k8s.io/api/core/v1"
 	v1 "k8s.io/api/core/v1"
 	metaV1 "k8s.io/apimachinery/pkg/apis/meta/v1"
 	"k8s.io/client-go/kubernetes"
 	"k8s.io/client-go/tools/clientcmd"
 	"log"
 	"os"
-	"strings"
 	"time"
 )
 
@@ -68,7 +68,7 @@ func main() {
 			fmt.Printf("Pod Namespace: %s\n",p.ObjectMeta.Namespace)
 			fmt.Printf("Status.Phase: %s\n",p.Status.Phase)
 
-			if strings.Contains(string(p.Status.Phase),"Running") {
+			if p.Status.Phase == corev1.PodRunning {
 				fmt.Printf("HostIP: %s\n", p.Status.HostIP)
 				fmt.Printf("PodIP: %s\n",p.Status.PodIP)
 				fmt.Printf("StartTime: %v\n",p.Status.StartTime.Time)
