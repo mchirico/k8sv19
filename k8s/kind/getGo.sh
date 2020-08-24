@@ -11,4 +11,7 @@ rm -f go1.15.linux-amd64.tar.gz
 export PATH=$PATH:/usr/local/go/bin
 export GOPATH=/root/go
 
-git clone https://github.com/mchirico/k8sv19.gi
+git clone https://github.com/mchirico/k8sv19.git
+
+cd k8sv19/
+go install ./...
