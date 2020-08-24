@@ -28,6 +28,6 @@ jobs:
         make buildImage
         make cert-manager-v1.19
       env:
-      GOPATH: /home/runner/gopath
-      GOBIN: /home/runner/gobin
+       GOPATH: /home/runner/gopath
+       GOBIN: /home/runner/gobin  
 
