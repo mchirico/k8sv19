@@ -31,6 +31,9 @@ jobs:
     # Runs a set of commands using the runners shell
     - name: BuildImage
       run: |
+        mkdir -p /home/runner/gopath
         GO111MODULE="off" go get k8s.io/kubernetes || true
+      env:
+       GOPATH: /home/runner/gopath
 
 
