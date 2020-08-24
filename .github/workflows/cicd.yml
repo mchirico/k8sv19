@@ -44,7 +44,10 @@ jobs:
     - name: compile
       run: |
         go install ./...
-        
+        ${GOBIN}/list-resources
+      env:
+        GOBIN: ${GOPATH}/bin
+
 
 
 
