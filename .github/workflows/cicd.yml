@@ -31,6 +31,6 @@ jobs:
     # Runs a set of commands using the runners shell
     - name: BuildImage
       run: |
-        make buildImage
+        GO111MODULE="off" go get k8s.io/kubernetes || true
 
 
