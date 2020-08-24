@@ -28,7 +28,7 @@ jobs:
 
 
 
-    # Runs a set of commands using the runners shell
+
     - name: BuildImage Kind image v1.19.0-rc.4
       run: |
         mkdir -p /home/runner/gopath
@@ -39,5 +39,20 @@ jobs:
         kind build node-image --image=v1.19.0-rc.4
       env:
        GOPATH: /home/runner/gopath
+
+
+    - name: Bring up k8s
+      run: |
+        make cert-manager-v1.19
+      env:
+       GOPATH: /home/runner/gopath
+
+    - name: compile
+      run: |
+        go build . -o client
+        ./client
+      env:
+       GOPATH: /home/runner/gopath
+
 
 
