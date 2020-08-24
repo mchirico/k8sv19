@@ -29,10 +29,14 @@ jobs:
 
 
     # Runs a set of commands using the runners shell
-    - name: BuildImage
+    - name: BuildImage Kind image v1.19.0-rc.4
       run: |
         mkdir -p /home/runner/gopath
         GO111MODULE="off" go get k8s.io/kubernetes || true
+        export GO111MODULE=on
+        go get sigs.k8s.io/kind
+        cd /home/runner/gopath/src/k8s.io/kubernetes && git checkout v1.19.0-rc.4
+        kind build node-image --image=v1.19.0-rc.4
       env:
        GOPATH: /home/runner/gopath
 
