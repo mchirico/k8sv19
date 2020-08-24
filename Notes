@@ -1,0 +1,26 @@
+export GO111MODULE=on
+go get k8s.io/client-go@v0.19.0-rc.4
+
+
+kind build node-image --image=v1.19.0-rc.4
+
+
+git rebase --root -i
+git push origin	master --force
+
+
+git init
+git add README.md
+git commit -m "first commit"
+git remote add origin git@github.com:mchirico/k8sv19.git
+git push -u origin master
+
+
+ 426  go get k8s.io/kubernetes
+  427  go get sigs.k8s.io/kind
+  428  which kind
+  429  cd
+  430  cd k8sv19/
+  431  ls
+  432  cd src/k8s.io/kubernetes/
+  433  git checkout v1.19.0-rc.4
