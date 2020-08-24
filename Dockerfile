@@ -6,4 +6,4 @@ COPY . $GOPATH/src/github.com/mchirico/k8sv19
 
 RUN cd examples/in-cluster-client-configuration && go build  -o /bin/project
 
-ENTRYPOINT ["/bin/bash"]
+ENTRYPOINT ["/usr/bin/top"]

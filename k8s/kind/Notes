@@ -1,0 +1,1 @@
+kubectl run shell --rm -i --tty --image ubuntu -- bash
