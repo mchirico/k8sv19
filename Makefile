@@ -3,6 +3,14 @@ NAME = k8sv19
 TAG = dev
 
 
+.PHONY: docker-build
+docker-build:
+        docker build --no-cache -t us.gcr.io/$(PROJECT)/$(NAME):$(TAG) -f Dockerfile .
+
+.PHONY: kind
+kind:
+	kind load docker-image gcr.io/$(PROJECT)/$(NAME):$(TAG)
+
 
 .PHONY: calico
 calico:

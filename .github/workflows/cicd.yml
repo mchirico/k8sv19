@@ -43,8 +43,8 @@ jobs:
 
     - name: compile
       run: |
-        go build ./examples/list-resource
-        ./examples/list-resources/list-resource
+        cd ./examples/list-resource && go build
+        ./list-resource
 
 
 
