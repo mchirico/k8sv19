@@ -34,6 +34,9 @@ jobs:
         go get sigs.k8s.io/kind
         cd ${GOPATH}/src/k8s.io/kubernetes && git checkout v1.19.0-rc.4
         kind build node-image --image=v1.19.0-rc.4
+      env:
+        GOPATH: /home/runner/go
+        GOBIN: /home/runner/go/bin
 
 
     - name: Bring up k8s
@@ -46,7 +49,9 @@ jobs:
         go install ./...
         ${GOBIN}/list-resources
       env:
-        GOBIN: ${GOPATH}/bin
+        GOPATH: /home/runner/go
+        GOBIN: /home/runner/go/bin
+
 
 
 
