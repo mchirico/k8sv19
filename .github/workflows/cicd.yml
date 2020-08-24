@@ -43,8 +43,9 @@ jobs:
 
     - name: compile
       run: |
-        cd ./examples/list-resource && go build
-        ./list-resource
+        go install ./...
+        
+
 
 
 

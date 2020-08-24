@@ -5,7 +5,7 @@ TAG = dev
 
 .PHONY: docker-build
 docker-build:
-        docker build --no-cache -t us.gcr.io/$(PROJECT)/$(NAME):$(TAG) -f Dockerfile .
+        docker build --no-cache -t gcr.io/$(PROJECT)/$(NAME):$(TAG) -f Dockerfile .
 
 .PHONY: kind
 kind:
