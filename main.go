@@ -3,10 +3,13 @@ package main
 import (
 	"context"
 	"fmt"
+	v1 "k8s.io/api/core/v1"
 	metaV1 "k8s.io/apimachinery/pkg/apis/meta/v1"
 	"k8s.io/client-go/kubernetes"
 	"k8s.io/client-go/tools/clientcmd"
+	"log"
 	"os"
+	"time"
 )
 
 func main() {
@@ -47,6 +50,30 @@ func main() {
 	for i, pod := range pods.Items {
 		fmt.Printf("Pod %d: %s, Namespace: %s\n", i+1, pod.ObjectMeta.Name, pod.ObjectMeta.Namespace)
 	}
+
+	watch, err := clientset.CoreV1().Pods("").Watch(ctx, metaV1.ListOptions{})
+	if err != nil {
+		panic(err.Error())
+	}
+	go func() {
+		for event := range watch.ResultChan() {
+			fmt.Printf("Type: %v\n", event.Type)
+			p, ok := event.Object.(*v1.Pod)
+			if !ok {
+				log.Fatal("unexpected type")
+			}
+			// fmt.Printf("Container status:\n %v \n",p.Status.ContainerStatuses)
+			fmt.Printf("\n\nPod Name: %s\n",p.ObjectMeta.Name)
+			fmt.Printf("Pod Namespace: %s\n",p.ObjectMeta.Namespace)
+			fmt.Printf("Status.Phase: %s\n",p.Status.Phase)
+			fmt.Printf("HostIP: %s\n",p.Status.HostIP)
+			fmt.Printf("PodIP: %s\n",p.Status.PodIP)
+			fmt.Printf("StartTime: %v\n",p.Status.StartTime.Time)
+
+			fmt.Printf("Status Phase:\n%v\n",p.Status.Phase)
+		}
+	}()
+	time.Sleep(15 * time.Second)
 
 	//-------------------------------------------------------------------------//
 	// List nodes
