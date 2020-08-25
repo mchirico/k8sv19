@@ -8,6 +8,7 @@ require (
 	github.com/evanphx/json-patch v4.9.0+incompatible // indirect
 	github.com/fsnotify/fsnotify v1.4.9 // indirect
 	github.com/golang/protobuf v1.4.2 // indirect
+	github.com/google/uuid v1.1.1
 	github.com/imdario/mergo v0.3.11 // indirect
 	github.com/json-iterator/go v1.1.10 // indirect
 	github.com/pkg/errors v0.9.1 // indirect
@@ -20,7 +21,7 @@ require (
 	k8s.io/api v0.19.0-rc.4
 	k8s.io/apimachinery v0.19.0-rc.4
 	k8s.io/client-go v0.19.0-rc.4
-	k8s.io/klog/v2 v2.2.0 // indirect
+	k8s.io/klog/v2 v2.2.0
 	k8s.io/kube-openapi v0.0.0-20200805222855-6aeccd4b50c6 // indirect
 	k8s.io/utils v0.0.0-20200821003339-5e75c0163111 // indirect
 )

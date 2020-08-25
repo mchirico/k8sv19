@@ -35,3 +35,10 @@ kubectl apply -f calico/cert-manager.yaml
 go run main.go
 ```
 
+
+### List modules
+
+```
+go list -m all
+
+```
