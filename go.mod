@@ -24,4 +24,5 @@ require (
 	k8s.io/klog/v2 v2.2.0
 	k8s.io/kube-openapi v0.0.0-20200805222855-6aeccd4b50c6 // indirect
 	k8s.io/utils v0.0.0-20200821003339-5e75c0163111 // indirect
+	sigs.k8s.io/kind v0.8.1 // indirect
 )

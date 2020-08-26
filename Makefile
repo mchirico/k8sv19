@@ -59,15 +59,15 @@ buildImage:
 	go get k8s.io/kubernetes || true
 	export GO111MODULE=on
 	go get sigs.k8s.io/kind
-	cd ${GOPATH}/src/k8s.io/kubernetes && git checkout v1.19.0-rc.4
-	kind build node-image --image=v1.19.0-rc.4
+	cd ${GOPATH}/src/k8s.io/kubernetes && git checkout v1.19.0
+	kind build node-image --image=v1.19.0
 
 
 
 .PHONY: cert-manager-v1.19
 cert-manager-v1.19:
 	kind delete cluster
-	kind create cluster --image=v1.19.0-rc.4 --config calico/kind-calico.yaml
+	kind create cluster --image=v1.19.0 --config calico/kind-calico.yaml
 	kubectl apply -f calico/ingress-nginx.yaml
 	kubectl apply -f calico/tigera-operator.yaml
 	kubectl apply -f calico/calicoNetwork.yaml
