@@ -26,6 +26,9 @@ nodes:
   - containerPort: 5001
     hostPort: 5001
     protocol: TCP
+  extraMounts:
+  - hostPath: /tmp/hostpath_pv
+    containerPath: /tmp/hostpath_pv
 - role: worker
   extraMounts:
   - hostPath: /tmp/hostpath_pv
